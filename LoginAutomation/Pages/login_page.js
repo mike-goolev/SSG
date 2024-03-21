@@ -4,36 +4,41 @@ export class LoginPage {
         this.usernameInputField = page.locator('input[id="username"]');
         this.passwordInputField = page.locator('input[id="password"]');
         this.submitButton = page.locator('button[type="submit"]');
+        this.logOutButton = page.locator('a.button.secondary.radius');
+
     }
 
-    // Functions to check the visibility of an element
+    //Check the visibility of Username element
     async isUsernameInputFieldVisible() {
         const usernameInputField = this.usernameInputField;
         return await usernameInputField.isVisible();
     }
 
+    //Check the visibility of Password element
     async isPasswordInputFieldVisible() {
         const passwordInputField = this.passwordInputField;
         return await passwordInputField.isVisible();
     }
 
+    //Check the visibility of Login button
     async isSubmitButtonVisible() {
         const submitButton = this.submitButton;
         return await submitButton.isVisible();
     }
 
-    // methods for filling the Username and Password input fields
+    // Fill Username input field
     async fillUsername(username) {
         const usernameInputField = this.usernameInputField;
         await usernameInputField.fill(username);
     }
 
+    // Fill Password input field
     async fillPassword(password) {
         const passwordInputField = this.passwordInputField;
         await passwordInputField.fill(password);
     }
 
-    // Method to call the fillUsername and fillPassword methods
+    // Call the fillUsername and fillPassword methods
     async logIn(username, password) {
         await this.fillUsername(username);
         await this.fillPassword(password);
@@ -44,4 +49,11 @@ export class LoginPage {
         const submitButton = this.submitButton;
         await submitButton.click();
     }
+
+    // Check if Logout button is visible
+    async isLogOutButtonVisible() {
+        const logOutButton = this.logOutButton;
+        return await logOutButton.isVisible();
+    }
+
 }
