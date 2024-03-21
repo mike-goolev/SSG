@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../Pages/login_page';
+import { LoginPage } from '../../Pages/login_page';
 
 export const validCredentials = ['practice', 'SuperSecretPassword!'];
 const successfullyLoggedInURL = 'https://practice.expandtesting.com/secure';

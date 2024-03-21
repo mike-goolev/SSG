@@ -1,5 +1,5 @@
 import {test, expect} from '@playwright/test';
-import { LoginPage } from '../Pages/login_page';
+import { LoginPage } from '../../Pages/login_page';
 
 // declare invalid credentials and error messages
 const invalidUsername = 'incorrectUser';
