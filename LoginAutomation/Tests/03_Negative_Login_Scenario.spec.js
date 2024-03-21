@@ -1,17 +1,16 @@
 import {test, expect} from '@playwright/test';
 import { LoginPage } from '../Pages/login_page';
-import {validCredentials} from '../Tests/02_Positive_Login_Scenario.spec';
+
+// declare invalid credentials and error messages
+const invalidUsername = 'incorrectUser';
+const invalidPassword = 'incorrectPassword';
+const expectedInvalidUsernameErrorMessageText = 'Your username is invalid!';
+const expectedInvalidPasswordErrorMessageText = 'Your password is invalid!';
+const validCredentials = ['practice', 'SuperSecretPassword!'];
 
 test.beforeEach(async ({page}) => {
     await page.goto('https://practice.expandtesting.com/login');
 })
-    
-    // declare invalid credentials and error messages
-    const invalidUsername = 'incorrectUser';
-    const invalidPassword = 'incorrectPassword';
-    const expectedInvalidUsernameErrorMessageText = 'Your username is invalid!';
-    const expectedInvalidPasswordErrorMessageText = 'Your password is invalid!';
-
     test('Test log in functionality with invalid username', async ({page}) => {
         const loginPage = new LoginPage(page);
         await loginPage.logIn(invalidUsername, validCredentials[1]);
