@@ -3,7 +3,7 @@ export class LoginPage {
         this.page = page;
         this.usernameInputField = page.locator('input[id="username"]');
         this.passwordInputField = page.locator('input[id="password"]');
-        this.loginButton = page.locator('button[type="submit"]');
+        this.submitButton = page.locator('button[type="submit"]');
     }
 
     async isUsernameInputFieldVisible() {
@@ -16,8 +16,8 @@ export class LoginPage {
         return await passwordInputField.isVisible();
     }
 
-    async isLoginButtonVisible() {
-        const loginButton = this.loginButton;
-        return await loginButton.isVisible();
+    async isSubmitButtonVisible() {
+        const submitButton = this.submitButton;
+        return await submitButton.isVisible();
     }
 }
