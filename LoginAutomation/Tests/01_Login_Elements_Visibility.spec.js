@@ -1,5 +1,6 @@
 import {test, expect} from '@playwright/test';
 import { LoginPage } from '../Pages/login_page';
+
 test.beforeEach(async ({page}) => {
     await page.goto('https://practice.expandtesting.com/login');
 })
