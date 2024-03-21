@@ -5,9 +5,7 @@ export class LoginPage {
         this.passwordInputField = page.locator('input[id="password"]');
         this.submitButton = page.locator('button[type="submit"]');
         this.logOutButton = page.locator('.button.secondary.radius');
-        this.usernameErrorMessage = page.locator('//div[@id="flash-message"]//b[contains(text(), "Your username is invalid!")]');
-        this.passwordErrorMessage = page.locator('//div[@id="flash-message"]//b[contains(text(), "Your password is invalid!")]');
-
+        this.errorMessage = page.locator('div#flash b');
 
     }
 
@@ -59,16 +57,26 @@ export class LoginPage {
         return await logOutButton.isVisible();
     }
 
-    // Check visibility of Username error message
-    async isUsernameErrorMessageVisible() {
-        const usernameErrorMessage = this.usernameErrorMessage;
-        return await usernameErrorMessage.isVisible();
+    // // Check visibility of Username error message
+    // async isUsernameErrorMessageVisible() {
+    //     const usernameErrorMessage = this.usernameErrorMessage;
+    //     return await usernameErrorMessage.isVisible();
+    // }
+
+    // // Check visibility of Password error message
+    // async isPasswordErrorMessageVisible() {
+    //     const passwordErrorMessage = this.passwordErrorMessage;
+    //     return await passwordErrorMessage.isVisible();
+    // }
+
+    async isErrorMessageVisible() {
+        const errorMessage = this.errorMessage;
+        return await errorMessage.isVisible();
     }
 
-    // Check visibility of Password error message
-    async isPasswordErrorMessageVisible() {
-        const passwordErrorMessage = this.passwordErrorMessage;
-        return await passwordErrorMessage.isVisible();
+    async errorMessageText() {
+        const errorMessage = this.errorMessage;
+        return await errorMessage.textContent();
     }
 
     // Check text of error message

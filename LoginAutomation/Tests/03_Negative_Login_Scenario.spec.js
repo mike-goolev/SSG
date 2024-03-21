@@ -1,5 +1,6 @@
 import {test, expect} from '@playwright/test';
 import { LoginPage } from '../Pages/login_page';
+import {validCredentials} from '../Tests/02_Positive_Login_Scenario.spec';
 
 test.beforeEach(async ({page}) => {
     await page.goto('https://practice.expandtesting.com/login');
@@ -13,25 +14,24 @@ test.beforeEach(async ({page}) => {
 
     test('Test log in functionality with invalid username', async ({page}) => {
         const loginPage = new LoginPage(page);
-        await loginPage.logIn(invalidUsername, 'SuperSecretPassword!');
+        await loginPage.logIn(invalidUsername, validCredentials[1]);
         await loginPage.clickSubmitLoginButton();
 
-        const usernameErrorMessageIsVisible = await loginPage.isUsernameErrorMessageVisible();
-        // const errorMessageIsVisible = await loginPage.isUsernameErrorMessageVisible();
-        expect(usernameErrorMessageIsVisible).toBe(true);
+        const errorMessageIsVisible = await loginPage.isErrorMessageVisible();
+        expect(errorMessageIsVisible).toBe(true);
 
         const actualInvalidUsernameErrorMessageText = await loginPage.errorMessageText();
         expect(actualInvalidUsernameErrorMessageText).toBe(expectedInvalidUsernameErrorMessageText);
     })
 
-    // test('Test log in functionality with invalid password', async ({page}) => {
-    //     const loginPage = new LoginPage(page);
-    //     await loginPage.logIn('practice', invalidPassword);
-    //     await loginPage.clickSubmitLoginButton();
+    test('Test log in functionality with invalid password', async ({page}) => {
+        const loginPage = new LoginPage(page);
+        await loginPage.logIn(validCredentials[0], invalidPassword);
+        await loginPage.clickSubmitLoginButton();
         
-    //     const passwordErrorMessageIsVisible = await loginPage.isPasswordErrorMessageVisible();
-    //     expect(passwordErrorMessageIsVisible).toBe(true);
+        const errorMessageIsVisible = await loginPage.isErrorMessageVisible();
+        expect(errorMessageIsVisible).toBe(true);
 
-    //     const actualInvalidPasswordErrorMessageText = await loginPage.errorMessageText();
-    //     expect(actualInvalidPasswordErrorMessageText).toBe(expectedInvalidPasswordErrorMessageText);
-    // })
+        const actualInvalidPasswordErrorMessageText = await loginPage.errorMessageText();
+        expect(actualInvalidPasswordErrorMessageText).toBe(expectedInvalidPasswordErrorMessageText);
+    })

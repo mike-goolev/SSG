@@ -5,7 +5,7 @@ test.beforeEach(async ({ page }) => {
     await page.goto('https://practice.expandtesting.com/login');
 });
 
-const validCredentials = ['practice', 'SuperSecretPassword!'];
+export const validCredentials = ['practice', 'SuperSecretPassword!'];
 const successfullyLoggedInURL = 'https://practice.expandtesting.com/secure';
 
 test('Test log in functionality with valid credentials', async ({page}) => {
