@@ -34,3 +34,14 @@ test.beforeEach(async ({page}) => {
         const actualInvalidPasswordErrorMessageText = await loginPage.errorMessageText();
         expect(actualInvalidPasswordErrorMessageText).toBe(expectedInvalidPasswordErrorMessageText);
     })
+
+    test('Test log in functionality by sumbitting empty log in form', async ({page}) => {
+        const loginPage = new LoginPage(page);
+        await loginPage.clickSubmitLoginButton();
+        
+        const errorMessageIsVisible = await loginPage.isErrorMessageVisible();
+        expect(errorMessageIsVisible).toBe(true);
+
+        const actualInvalidUsernameErrorMessageText = await loginPage.errorMessageText();
+        expect(actualInvalidUsernameErrorMessageText).toBe(expectedInvalidUsernameErrorMessageText);
+    })
